@@ -12,6 +12,11 @@ struct Team {
     var position: String
     var teamName: String
     var points: String
+    var played: String
+    var win: String
+    var draw: String
+    var loss: String
+    var goalDiff: String
 }
 
 // MARK: - Standings
@@ -83,11 +88,16 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.position.text = dataSource[indexPath.row].position
         cell.teamName.text = dataSource[indexPath.row].teamName
         cell.points.text = dataSource[indexPath.row].points
+        cell.played.text = dataSource[indexPath.row].played
+        cell.win.text = dataSource[indexPath.row].win
+        cell.draw.text = dataSource[indexPath.row].draw
+        cell.loss.text = dataSource[indexPath.row].loss
+        cell.goalDiff.text = dataSource[indexPath.row].goalDiff
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        return 200.0
     }
     
 
@@ -113,7 +123,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                         self.dataSource.append(Team(
                                             position: String(item.rank),
                                             teamName: parseTeamName(rawName: item.team.name),
-                                            points: String(item.points)
+                                            points: "Pts: " + String(item.points),
+                                            played: "Pl: " + String(item.played),
+                                            win: "W: " + String(item.win),
+                                            draw: "D: " + String(item.draw),
+                                            loss: "L: " + String(item.loss),
+                                            goalDiff: "GD: " + String(item.goalDiff)
                                         ))
                                     }
                                     self.tabla.reloadData()

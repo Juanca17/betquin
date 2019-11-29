@@ -13,5 +13,10 @@ class TablaGeneralCell: UITableViewCell {
     @IBOutlet weak var position: UILabel!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var points: UILabel!
+    @IBOutlet weak var played: UILabel!
+    @IBOutlet weak var win: UILabel!
+    @IBOutlet weak var draw: UILabel!
+    @IBOutlet weak var loss: UILabel!
+    @IBOutlet weak var goalDiff: UILabel!
     
 }

@@ -124,6 +124,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPartidos()
+        fetchPartidos()
+        
     }
     
     func fetchPartidos() {
