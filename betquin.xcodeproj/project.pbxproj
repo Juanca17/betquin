@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A43D0C76239098B700570A6A /* TablaGeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43D0C74239098B700570A6A /* TablaGeneralCell.swift */; };
+		A43D0C77239098B700570A6A /* TablaGeneralCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43D0C75239098B700570A6A /* TablaGeneralCell.xib */; };
+		A43D0C7A2390C6AD00570A6A /* PartidosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43D0C782390C6AD00570A6A /* PartidosCell.swift */; };
+		A43D0C7B2390C6AD00570A6A /* PartidosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43D0C792390C6AD00570A6A /* PartidosCell.xib */; };
 		A4B0AE5D2373112D00E8D0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0AE5C2373112D00E8D0E1 /* AppDelegate.swift */; };
 		A4B0AE5F2373112D00E8D0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0AE5E2373112D00E8D0E1 /* SceneDelegate.swift */; };
 		A4B0AE612373112D00E8D0E1 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0AE602373112D00E8D0E1 /* FirstViewController.swift */; };
@@ -18,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A43D0C74239098B700570A6A /* TablaGeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablaGeneralCell.swift; sourceTree = "<group>"; };
+		A43D0C75239098B700570A6A /* TablaGeneralCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TablaGeneralCell.xib; sourceTree = "<group>"; };
+		A43D0C782390C6AD00570A6A /* PartidosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartidosCell.swift; sourceTree = "<group>"; };
+		A43D0C792390C6AD00570A6A /* PartidosCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartidosCell.xib; sourceTree = "<group>"; };
 		A4B0AE592373112D00E8D0E1 /* betquin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = betquin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B0AE5C2373112D00E8D0E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4B0AE5E2373112D00E8D0E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,11 +68,15 @@
 		A4B0AE5B2373112D00E8D0E1 /* betquin */ = {
 			isa = PBXGroup;
 			children = (
+				A4B0AE602373112D00E8D0E1 /* FirstViewController.swift */,
+				A43D0C782390C6AD00570A6A /* PartidosCell.swift */,
+				A43D0C792390C6AD00570A6A /* PartidosCell.xib */,
 				A4B0AE5C2373112D00E8D0E1 /* AppDelegate.swift */,
 				A4B0AE5E2373112D00E8D0E1 /* SceneDelegate.swift */,
-				A4B0AE602373112D00E8D0E1 /* FirstViewController.swift */,
 				A4B0AE622373112D00E8D0E1 /* SecondViewController.swift */,
 				A4B0AE642373112D00E8D0E1 /* Main.storyboard */,
+				A43D0C74239098B700570A6A /* TablaGeneralCell.swift */,
+				A43D0C75239098B700570A6A /* TablaGeneralCell.xib */,
 				A4B0AE6A2373112E00E8D0E1 /* Assets.xcassets */,
 				A4B0AE6C2373112E00E8D0E1 /* LaunchScreen.storyboard */,
 				A4B0AE6F2373112E00E8D0E1 /* Info.plist */,
@@ -131,9 +143,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43D0C7B2390C6AD00570A6A /* PartidosCell.xib in Resources */,
 				A4B0AE6E2373112E00E8D0E1 /* LaunchScreen.storyboard in Resources */,
 				A4B0AE6B2373112E00E8D0E1 /* Assets.xcassets in Resources */,
 				A4B0AE662373112D00E8D0E1 /* Main.storyboard in Resources */,
+				A43D0C77239098B700570A6A /* TablaGeneralCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,11 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43D0C7A2390C6AD00570A6A /* PartidosCell.swift in Sources */,
 				A4B0AE692373112D00E8D0E1 /* betquin.xcdatamodeld in Sources */,
 				A4B0AE632373112D00E8D0E1 /* SecondViewController.swift in Sources */,
 				A4B0AE612373112D00E8D0E1 /* FirstViewController.swift in Sources */,
 				A4B0AE5D2373112D00E8D0E1 /* AppDelegate.swift in Sources */,
 				A4B0AE5F2373112D00E8D0E1 /* SceneDelegate.swift in Sources */,
+				A43D0C76239098B700570A6A /* TablaGeneralCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
