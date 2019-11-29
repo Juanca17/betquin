@@ -8,11 +8,17 @@
 
 import UIKit
 
+struct SectionEvent {
+    var scheduled: String
+    var eventList: [Event]
+}
+
 struct Event {
     var id: String
     var homeTeam: String
     var awayTeam: String
     var middleLabel: String
+    var scheduled: String
 }
 
 // MARK: - Schedule
@@ -88,18 +94,27 @@ enum Qualifier: String, Codable {
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tabla: UITableView!
+    var sectionDataSource:[SectionEvent] = []
     var dataSource:[Event] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return(dataSource.count)
+        return sectionDataSource[section].eventList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("PartidosCell", owner: self, options: nil)?.first as! PartidosCell
-        cell.homeTeam.text = dataSource[indexPath.row].homeTeam
-        cell.awayTeam.text = dataSource[indexPath.row].awayTeam
-        cell.middleLabel.text = dataSource[indexPath.row].middleLabel
+        cell.homeTeam.text = sectionDataSource[indexPath.section].eventList[indexPath.row].homeTeam
+        cell.awayTeam.text = sectionDataSource[indexPath.section].eventList[indexPath.row].awayTeam
+        cell.middleLabel.text = sectionDataSource[indexPath.section].eventList[indexPath.row].middleLabel
         return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionDataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionDataSource[section].scheduled
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -126,9 +141,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             for item in agenda {
                                 self.dataSource.append(Event(
                                     id: item.id,
-                                    homeTeam: String(item.competitors[0].name),
-                                    awayTeam: String(item.competitors[1].name),
-                                    middleLabel: "vs"
+                                    homeTeam: parseTeamName2(rawName: String(item.competitors[0].name)),
+                                    awayTeam: parseTeamName2(rawName: String(item.competitors[1].name)),
+                                    middleLabel: parseMatchTime(dateString: item.scheduled),
+                                    scheduled: parseDate(dateString: item.scheduled)
                                 ))
                             }
                             self.fetchResults()
@@ -169,7 +185,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                 }
                                 j += 1
                             }
-                            self.tabla.reloadData()
+                            self.groupSectionEvents()
                         }
                     }
 
@@ -180,6 +196,92 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         task.resume()
     }
+    
+    func groupSectionEvents() {
+        var index: String
+        var i = 0
+        if self.dataSource.count > 0 {
+            index = self.dataSource[0].scheduled
+            self.sectionDataSource.append(SectionEvent(scheduled: index, eventList: []))
+            for item in self.dataSource {
+                if index == item.scheduled {
+                    self.sectionDataSource[i].eventList.append(item)
+                } else {
+                    index = item.scheduled
+                    self.sectionDataSource.append(SectionEvent(scheduled: index, eventList: [item]))
+                    i += 1
+                }
+            }
+        }
+        self.tabla.reloadData()
+    }
 
 
+}
+
+func parseDate(dateString: String) -> String {
+    let dateFormatterGet = DateFormatter()
+    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+    let dateFormatterPrint = DateFormatter()
+    dateFormatterPrint.dateFormat = "EEEE, d MMMM yyyy"
+    
+    if let date = dateFormatterGet.date(from: dateString) {
+        return dateFormatterPrint.string(from: date)
+    } else {
+       return dateString
+    }
+}
+
+func parseMatchTime(dateString: String) -> String {
+    let dateFormatterGet = DateFormatter()
+    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+    let dateFormatterPrint = DateFormatter()
+    dateFormatterPrint.dateFormat = "HH:00"
+    
+    if let date = dateFormatterGet.date(from: dateString) {
+        return dateFormatterPrint.string(from: date)
+    } else {
+       return dateString
+    }
+}
+
+func parseTeamName2(rawName: String) -> String {
+    switch rawName {
+    case "Club Santos Laguna":
+        return "Santos"
+    case "Club Leon":
+        return "León"
+    case "Tigres UANL":
+        return "Tigres"
+    case "Queretaro FC":
+        return "Querétaro"
+    case "CF America":
+        return "América"
+    case "CA Monarcas Morelia":
+        return "Morelia"
+    case "CF Monterrey":
+        return "Monterrey"
+    case "CF Pachuca":
+        return "Pachuca"
+    case "Guadalajara Chivas":
+        return "Chivas"
+    case "Xolos de Tijuana":
+        return "Tijuana"
+    case "Pumas Unam":
+        return "Pumas"
+    case "Atlas FC":
+        return "Atlas"
+    case "FC Juarez":
+        return "Juárez"
+    case "Deportivo Toluca FC":
+        return "Toluca"
+    case "Puebla FC":
+        return "Puebla"
+    case "Tiburones Rojos de Veracruz":
+        return "Veracruz"
+    default:
+        return rawName
+    }
 }
